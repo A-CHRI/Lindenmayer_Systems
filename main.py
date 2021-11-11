@@ -10,7 +10,7 @@ def LindIter(System, N):
                 if e == "S":
                     copyString += "SLSRSLS"
                 elif e == "L":
-                    copyString += L
+                    copyString += "L"
                 elif e == "R":
                     copyString += "R"
             LindenmayerString = copyString
