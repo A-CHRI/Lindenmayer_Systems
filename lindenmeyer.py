@@ -45,21 +45,33 @@ def turtlePlot(turtleCommands):
 if __name__ == "__main__":
     # List of options in the main menu
     options = ["Choose Lindenmayer system", "Generate plots", "Quit"]
+    inp=0
     #While loop to make sure the user returns to the menu of the interface
     while True:
         # Creates a seperator for the layout
-        print("\n---------------------------------------")
-        # Prints the options in the menu, and gets the users input
-        print("\nPlease choose one of the following options by entering its corresponding number:\n")
-        for i,v in enumerate(options):
-            print(i+1, ":", v)
-        inp = input("\nInput: ")
+        
+        if(inp==0):
+            print("\n---------------------------------------")
+            # Prints the options in the menu, and gets the users input
+            print("\nPlease choose one of the following options by entering its corresponding number:\n")
+            for i,v in enumerate(options):
+                print(i+1, ":", v)
+            inp = input("\nInput: ")
 
         # Runs if the user wishes to choose a system
         if inp == "1":
-            pass # Remove the "pass" when you start coding
+            for j,l in enumerate(["Koch curve", "Sierpinski triangle","Quit"]):
+                print(j+1, ":", l)
+            option = input("\nInput: ")
 
-        # Runs if the user wishes to generate plots
+            if option=="1":
+                pass
+                #Call koch method
+            elif option=="2":
+                pass
+                #Call sierpinski triangle method
+            elif option=="3":
+                inp=0
         elif inp == "2":
             pass # Remove the "pass" when you start coding
 
