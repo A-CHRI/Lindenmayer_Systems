@@ -33,3 +33,8 @@ print(LindIter("Sierpinski", 1))
 
 print(LindIter("Koch", 5))
 print(LindIter("Sierpinski", 5))
+
+for i in range(10):
+    print(len(LindIter("Koch", i)))
+    print(len(LindIter("Sierpinski", i)))
+    print("\n")

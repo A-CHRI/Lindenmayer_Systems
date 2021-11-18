@@ -1,4 +1,6 @@
 import turtle
+import numpy as np
+import math
 
 ### Lindenmayer Iteration
 def LindIter(System, N):
@@ -31,9 +33,26 @@ def LindIter(System, N):
     return LindenmayerString
 
 ### Translation to turtle graphics commands
-def turtleGraph(LindenmayerString):
-    pass
-    # Code here
+def turtleGraph(LindenmayerString, N):
+    turtleCommands = np.array([])
+    if "S" in LindenmayerString:
+        length = (1/3)**N
+        for e in LindenmayerString:
+            if e == "S":
+                turtleCommands = np.append(turtleCommands, length)
+            elif e == "L":
+                turtleCommands = np.append(turtleCommands, math.pi*1/3)
+            elif e == "R":
+                turtleCommands = np.append(turtleCommands, math.pi*(-2/3))
+    else:
+        length = (1/2)**N
+        for e in LindenmayerString:
+            if e == "A" or e == "B":
+                turtleCommands = np.append(turtleCommands, length)
+            elif e == "L":
+                turtleCommands = np.append(turtleCommands, math.pi*1/3)
+            elif e == "R":
+                turtleCommands = np.append(turtleCommands, math.pi*(-1/3))
     return turtleCommands
 
 ### Turtle graphics plot function
