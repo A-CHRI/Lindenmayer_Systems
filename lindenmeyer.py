@@ -1,4 +1,3 @@
-import turtle
 import numpy as np
 import math
 from matplotlib import pyplot as plt
@@ -58,8 +57,18 @@ def turtleGraph(LindenmayerString, N):
 
 ### Turtle graphics plot function
 def turtlePlot(turtleCommands):
-    pass
-    # Code here - remove the "pass" when you start coding
+    pointlist = np.array([[0,0]])
+    d = np.array([1,0])
+    for i, e in enumerate(turtleCommands):
+        if i % 2 == 0:
+            xn = np.array([pointlist[-1] + e * d])
+            pointlist = np.append(pointlist, xn, axis=0)
+        else:
+            dn = np.dot(np.array([[math.cos(e), -math.sin(e)], [math.sin(e), math.cos(e)]]), d)
+            d = dn
+    fig, ax = plt.subplots()
+    ax.plot(pointlist[:,0], pointlist[:, 1])
+    plt.show()
 
 ### Main script
 if __name__ == "__main__":

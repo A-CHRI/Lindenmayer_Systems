@@ -33,15 +33,14 @@ def turtlePlot(turtleCommands):
     for i, e in enumerate(turtleCommands):
         if i % 2 == 0:
             xn = np.array([pointlist[-1] + e * d])
-            print(pointlist[-1])
             pointlist = np.append(pointlist, xn, axis=0)
         else:
             dn = np.dot(np.array([[math.cos(e), -math.sin(e)], [math.sin(e), math.cos(e)]]), d)
             d = dn
     fig, ax = plt.subplots()
-    ax.plot(pointlist)
-    fig.show()
+    ax.plot(pointlist[:,0], pointlist[:, 1])
+    plt.show()
 
     # Code here - remove the "pass" when you start coding
-print(turtleGraph(LindIter("Sierpinski", 3), 3))
-turtlePlot(turtleGraph(LindIter("Sierpinski", 3), 3))
+print(turtleGraph(LindIter("Koch", 7), 7))
+turtlePlot(turtleGraph(LindIter("Koch", 7), 7))
