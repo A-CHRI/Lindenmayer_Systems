@@ -75,6 +75,7 @@ if __name__ == "__main__":
     # List of options in the main menu
     options = ["Choose Lindenmayer system", "Generate plots", "Quit"]
     inp=0
+    commands = np.array([])
     #While loop to make sure the user returns to the menu of the interface
     while True:
         # Creates a seperator for the layout
@@ -91,18 +92,24 @@ if __name__ == "__main__":
         if inp == "1":
             for j,l in enumerate(["Koch curve", "Sierpinski triangle","Quit"]):
                 print(j+1, ":", l)
-            option = input("\nInput: ")
+            sys = input("\nInput: ")
 
-            if option=="1":
-                pass
-                #Call koch method
-            elif option=="2":
-                pass
-                #Call sierpinski triangle method
-            elif option=="3":
+            if sys=="3":
                 inp=0
+            elif sys != "1" and sys != "2":
+                print("Invalid input")
+
+            n = input("\nHow many iterations do you want of your system?\n")
+            try:
+                n = int(n)
+            except:
+                print("Invalid input.\n")
+            syslist = ["Koch", "Sierpinski"]
+            commands = turtleGraph(LindIter(syslist[int(sys)-1], n), n)
+            inp = 0
         elif inp == "2":
-            pass # Remove the "pass" when you start coding
+            turtlePlot(commands)
+            inp = 0
 
         # Runs if the user wishes to quit
         elif inp == "3":
