@@ -1,6 +1,7 @@
 import turtle
 import numpy as np
 import math
+from matplotlib import pyplot as plt
 
 ### Lindenmayer Iteration
 def LindIter(System, N):

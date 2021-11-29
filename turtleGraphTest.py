@@ -2,11 +2,12 @@ import turtle
 import numpy as np
 import math
 from lindenmeyer import LindIter
+from matplotlib import pyplot as plt
 
 def turtleGraph(LindenmayerString, N):
     turtleCommands = np.array([])
     if "S" in LindenmayerString:
-        length = 1000*((1/3)**N)
+        length = 1*((1/3)**N)
         for e in LindenmayerString:
             if e == "S":
                 turtleCommands = np.append(turtleCommands, length)
@@ -15,7 +16,7 @@ def turtleGraph(LindenmayerString, N):
             elif e == "R":
                 turtleCommands = np.append(turtleCommands, math.pi*(-2/3))
     else:
-        length = 1000*((1/2)**N)
+        length = 1*((1/2)**N)
         for e in LindenmayerString:
             if e == "A" or e == "B":
                 turtleCommands = np.append(turtleCommands, length)
@@ -27,16 +28,20 @@ def turtleGraph(LindenmayerString, N):
 
 ### Turtle graphics plot function
 def turtlePlot(turtleCommands):
-    turtle.home()
-    turtle.radians()
-    turtle.screensize(canvwidth=1000, canvheight=1000)
-    turtle.setworldcoordinates(0, 0, 1000, 1000)
+    pointlist = np.array([[0,0]])
+    d = np.array([1,0])
     for i, e in enumerate(turtleCommands):
         if i % 2 == 0:
-            turtle.forward(e)
+            xn = np.array([pointlist[-1] + e * d])
+            print(pointlist[-1])
+            pointlist = np.append(pointlist, xn, axis=0)
         else:
-            turtle.left(e)
+            dn = np.dot(np.array([[math.cos(e), -math.sin(e)], [math.sin(e), math.cos(e)]]), d)
+            d = dn
+    fig, ax = plt.subplots()
+    ax.plot(pointlist)
+    fig.show()
+
     # Code here - remove the "pass" when you start coding
 print(turtleGraph(LindIter("Sierpinski", 3), 3))
-    
-turtlePlot(turtleGraph(LindIter("Koch", 4), 4))
+turtlePlot(turtleGraph(LindIter("Sierpinski", 3), 3))
