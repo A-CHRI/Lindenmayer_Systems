@@ -68,6 +68,8 @@ def turtlePlot(turtleCommands):
             d = dn
     fig, ax = plt.subplots()
     ax.plot(pointlist[:,0], pointlist[:, 1])
+    string = str(syslist[system-1]) + " system with " + str(iterations) + " iterations"
+    fig.suptitle(string)
     plt.show()
 
 ### Main script
@@ -111,6 +113,8 @@ if __name__ == "__main__":
             n = input("\nHow many iterations do you want of your system?\n")
             try:
                 n = int(n)
+                if n < 0:
+                    n = 0
                 iterations = n
             except:
                 print("Invalid input. Try again.\n")
@@ -120,7 +124,10 @@ if __name__ == "__main__":
             commands = turtleGraph(LindIter(syslist[int(sys)-1], n), n)
             inp = 0
         elif inp == "2":
-            turtlePlot(commands)
+            if system != 0:
+                turtlePlot(commands)
+            else:
+                print("No system is chosen.")
             inp = 0
 
         # Runs if the user wishes to quit
