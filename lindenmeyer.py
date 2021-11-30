@@ -90,20 +90,25 @@ if __name__ == "__main__":
 
         # Runs if the user wishes to choose a system
         if inp == "1":
+            print("Which system would you like?\n")
             for j,l in enumerate(["Koch curve", "Sierpinski triangle","Quit"]):
                 print(j+1, ":", l)
             sys = input("\nInput: ")
 
             if sys=="3":
                 inp=0
+                continue
             elif sys != "1" and sys != "2":
-                print("Invalid input")
+                print("Invalid input. Try again.\n")
+                continue
 
             n = input("\nHow many iterations do you want of your system?\n")
             try:
                 n = int(n)
             except:
-                print("Invalid input.\n")
+                print("Invalid input. Try again.\n")
+                continue
+
             syslist = ["Koch", "Sierpinski"]
             commands = turtleGraph(LindIter(syslist[int(sys)-1], n), n)
             inp = 0
