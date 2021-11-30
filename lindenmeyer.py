@@ -91,7 +91,7 @@ if __name__ == "__main__":
         # Runs if the user wishes to choose a system
         if inp == "1":
             print("Which system would you like?\n")
-            for j,l in enumerate(["Koch curve", "Sierpinski triangle","Quit"]):
+            for j,l in enumerate(["Koch curve", "Sierpinski triangle","Return to menu"]):
                 print(j+1, ":", l)
             sys = input("\nInput: ")
 
@@ -123,3 +123,4 @@ if __name__ == "__main__":
         # Runs if the user inputs an invalid option
         else:
             print("\nInvalid input. Please try again.")
+            inp = 0
