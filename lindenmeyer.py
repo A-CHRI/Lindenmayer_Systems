@@ -76,11 +76,17 @@ if __name__ == "__main__":
     options = ["Choose Lindenmayer system", "Generate plots", "Quit"]
     inp=0
     commands = np.array([])
+    syslist = ["Koch", "Sierpinski"]
+    system = 0
+    iterations = 0
     #While loop to make sure the user returns to the menu of the interface
     while True:
         # Creates a seperator for the layout
         
         if(inp==0):
+            if system == 1 or system == 2:
+                print("\n---------------------------------------")
+                print("Current system is", syslist[system-1], "with", iterations, "iterations.")
             print("\n---------------------------------------")
             # Prints the options in the menu, and gets the users input
             print("\nPlease choose one of the following options by entering its corresponding number:\n")
@@ -105,11 +111,12 @@ if __name__ == "__main__":
             n = input("\nHow many iterations do you want of your system?\n")
             try:
                 n = int(n)
+                iterations = n
             except:
                 print("Invalid input. Try again.\n")
                 continue
 
-            syslist = ["Koch", "Sierpinski"]
+            system = int(sys)
             commands = turtleGraph(LindIter(syslist[int(sys)-1], n), n)
             inp = 0
         elif inp == "2":
