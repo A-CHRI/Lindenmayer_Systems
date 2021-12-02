@@ -1,7 +1,7 @@
 import numpy as np
 import math
 from matplotlib import pyplot as plt
-### Exam Project Lindenmeyer Systems ###
+### Exam Project Lindenmayer Systems ###
 # s214656 #
 # s214614 #
 # s214618 #
@@ -11,7 +11,7 @@ from matplotlib import pyplot as plt
 # The Numpy- and MatPlotLib-library's documentation has been a much used source in the development of this script
 
 
-### Lindenmayer Iteration, takes a string and an integer as parameter, where the string describes the Lindenmeyer-system, the integer describes number of iterations
+### Lindenmayer Iteration, takes a string and an integer as parameter, where the string describes the Lindenmayer-system, the integer describes number of iterations
 #Returns a string that describes the system after N iterations
 def LindIter(System, N):
     # Initialize the Lindenmayer string depending on the chosen system
