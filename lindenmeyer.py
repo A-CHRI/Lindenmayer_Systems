@@ -1,12 +1,23 @@
 import numpy as np
 import math
 from matplotlib import pyplot as plt
+### Exam Project Lindenmeyer Systems ###
+# s214656 #
+# s214614 #
+# s214618 #
 
-### Lindenmayer Iteration
+# We have all worked on every part of the script in an iterative process, starting with rough sketches of each method, slowly refining through testing and optimization
+
+# The Numpy- and MatPlotLib-library's documentation has been a much used source in the development of this script
+
+
+### Lindenmayer Iteration, takes a string and an integer as parameter, where the string describes the Lindenmeyer-system, the integer describes number of iterations
+#Returns a string that describes the system after N iterations
 def LindIter(System, N):
-    # Initialize the Lindenmayer string depending on the choosing system
+    # Initialize the Lindenmayer string depending on the chosen system
     if System == "Koch":
         LindenmayerString = "S"
+        #For each iteration, replace all letters with the corresponding string
         for i in range(N):
             copyString = ""
             for e in LindenmayerString:
@@ -31,9 +42,11 @@ def LindIter(System, N):
                 elif e == "R":
                     copyString += "R"
             LindenmayerString = copyString
+    #Return the finished string
     return LindenmayerString
 
-### Translation to turtle graphics commands
+### Translation to turtle graphics commands, takes a string and an integer as parameter
+#Returns an array of turtle-commands based on the input string
 def turtleGraph(LindenmayerString, N):
     # Initializes an array of turtle commands
     turtleCommands = np.array([])
@@ -59,10 +72,12 @@ def turtleGraph(LindenmayerString, N):
                 turtleCommands = np.append(turtleCommands, math.pi*(-1/3))
     return turtleCommands
 
-### Turtle graphics plot function
+### Turtle graphics plot function, takes an array of turtlecommands as parameter, plots the system they describe
+#
 def turtlePlot(turtleCommands):
-    # Initializes the list of points to plot, and sets the forst point to be (0,0)
+    # Initializes the list of points to plot, and sets the first point to be (0,0)
     pointlist = np.array([[0,0]])
+    #Sets a variable for the current direction-vector
     d = np.array([1,0])
     # Iterates through the turtleCommands array and adds the points to the list of points
     for i, e in enumerate(turtleCommands):
@@ -70,11 +85,13 @@ def turtlePlot(turtleCommands):
             xn = np.array([pointlist[-1] + e * d])
             pointlist = np.append(pointlist, xn, axis=0)
         else:
+            #If its an uneven element in the list it describes a turn, and the direction-vector is updated
             dn = np.dot(np.array([[math.cos(e), -math.sin(e)], [math.sin(e), math.cos(e)]]), d)
             d = dn
     # Sets up, and plots the points
     fig, ax = plt.subplots()
     ax.plot(pointlist[:,0], pointlist[:, 1])
+    #Adds a title to the diagram
     string = str(syslist[system-1]) + " system with " + str(iterations) + " iterations"
     fig.suptitle(string)
     plt.show()
@@ -121,7 +138,7 @@ if __name__ == "__main__":
                 print("Invalid input. Try again.\n")
                 continue
 
-            # Gets the number of iterations and checks for any wrongful inputs
+            # Gets the number of iterations and checks for any wrongful inputs. Negative iterations are set to 0
             n = input("\nHow many iterations do you want of your system?\n")
             try:
                 n = int(n)
@@ -139,14 +156,14 @@ if __name__ == "__main__":
 
         # Runs if the user wishes to generate plots
         elif inp == "2":
-            # Checks if the system variable is valid
+            # Checks if any system has been chosen, then plots
             if system != 0:
                 turtlePlot(commands)
             else:
                 print("No system is chosen.")
             inp = 0
 
-        # Runs if the user wishes to quit
+        # Runs if the user wishes to quit, breaks the while-loop, which exits the program
         elif inp == "3":
             break
 
